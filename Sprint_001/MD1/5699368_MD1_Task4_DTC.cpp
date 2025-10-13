@@ -1,0 +1,188 @@
+#include"5699368_MD1_Task4_SeverityLevel.h"
+#include"5699368_MD1_Task4_DTC.h"
+#include<iostream>
+#include<ctime>
+#include<string>
+
+// Default constructors
+DTC::DTC(){
+    m_code = "";
+    m_description = "";
+    m_active = false;
+    m_occurenceCount = 0;
+    m_lastOccurenceTime = 0;
+    m_severityLevel = SeverityLevel::NORMAL;
+    m_confirmed = false;
+    m_pending = false;
+    m_milOn = false;
+    m_system = "";
+    m_origin = "";
+}
+
+// Parameterized constructor
+DTC::DTC(std::string code_,std::string description_,bool active_,int occurenceCount_,std::time_t lastOccurenceTime_,SeverityLevel severityLevel_,bool confirmed_,bool pending_,bool milOn_,std::string system_,std::string origin_){
+    m_code = code_;
+    m_description = description_;
+    m_active = active_;
+    m_occurenceCount = occurenceCount_;
+    m_lastOccurenceTime = lastOccurenceTime_;
+    m_severityLevel = severityLevel_;
+    m_confirmed = confirmed_;
+    m_pending = pending_;
+    m_milOn = milOn_;
+    m_system = system_;
+    m_origin = origin_;
+}
+
+// copy constructor
+DTC::DTC(const DTC& other){
+    m_code = other.m_code;
+    m_description = other.m_description;
+    m_active = other.m_active;
+    m_occurenceCount = other.m_occurenceCount;
+    m_lastOccurenceTime = other.m_lastOccurenceTime;
+    m_severityLevel = other.m_severityLevel;
+    m_confirmed = other.m_confirmed;
+    m_pending = other.m_pending;
+    m_milOn = other.m_milOn;
+    m_system = other.m_system;
+    m_origin = other.m_origin;
+}
+
+// Getters
+std::string DTC:: getCode() const{
+    return m_code;
+}    
+std::string DTC::getDescription() const{
+    return m_description;
+}
+bool DTC::getActive() const{
+    return m_active;
+}
+int DTC::getOccurenceCount() const{
+    return m_occurenceCount;
+}
+std::time_t DTC::getLastOccurenceTime() const{
+    return m_lastOccurenceTime;
+}
+SeverityLevel DTC::getSeverityLevel() const{
+    return m_severityLevel;
+}
+bool DTC::getConfirmed() const{
+    return m_confirmed;
+}
+bool DTC::getPending() const{
+    return m_pending;
+}
+bool DTC::getMilOn() const{
+    return m_milOn;
+}
+std::string DTC::getSystem() const{
+    return m_system;
+}
+std::string DTC::getOrigin() const{
+    return m_origin;
+}
+
+// setters
+void DTC::setCode(const std::string code_){
+    m_code = code_;
+}
+void DTC::setDescription(const std::string description_){
+    m_description = description_;
+}
+void DTC::setActive(const bool active_){
+    m_active = active_;
+}
+void DTC::setOccurenceCount(const int occurenceCount_){
+    m_occurenceCount = occurenceCount_;
+}
+void DTC::setLastOccurenceTime(const std::time_t lastOccurenceTime_){
+    m_lastOccurenceTime = lastOccurenceTime_;
+}
+void DTC::setSeverityLevel(const SeverityLevel severityLevel_){
+    m_severityLevel = severityLevel_;
+}
+void DTC::setConfirmed(const bool confirmed_){
+    m_confirmed = confirmed_;
+}
+void DTC::setPending(const bool pending_){
+    m_pending = pending_;
+}
+void DTC::setMilOn(const bool milOn_){
+    m_milOn = milOn_;
+}
+void DTC::setSystem(const std::string system_){
+    m_system = system_;
+}
+void DTC::setOrigin(const std::string origin_){
+    m_origin = origin_;
+}
+
+// member functions
+
+// set active attribute to true
+void DTC::activate(){
+    m_active = true;
+}
+
+// set active attribute to false
+void DTC::deActivate(){
+    m_active = false;
+}
+
+// increment occurance count by 1
+void DTC::incrementOccurence(){
+    m_occurenceCount ++;
+}
+
+// printing information
+void DTC::printDTCInfo(){
+   std::cout<<"Code: "<<m_code<<std::endl;
+   std::cout<<"Description: "<<m_description<<std::endl;
+   std::cout<<"Activation status: "<<((m_active) ? "Active": "Inactive" )<<std::endl;
+   std::cout<<"Occurance Count: "<<m_occurenceCount<<std::endl;
+   std::cout<<"Last Occurance Time: "<<std::ctime(&m_lastOccurenceTime);
+   std::cout<<"Severity Level: "<<getSeverityString()<<std::endl;
+   std::cout<<"Detection Confirmed: "<<((m_confirmed) ? "True" : "False")<<std::endl;
+   std::cout<<"Is pending confirmation: "<<((m_pending) ? "Yes": "False")<<std::endl;
+   std::cout<<"Malfunction Indicator light on: "<<((m_milOn) ? "Yes" : "No")<<std::endl;
+   std::cout<<"Affected Subsystem: "<<m_system<<std::endl;
+   std::cout<<"DTC Origin: "<<m_origin<<std::endl;
+}
+
+// toggle mil -> if on make it off --> if off make it on
+void DTC::toggleMIL(){
+    if (m_milOn) {m_milOn = false;}
+    else {m_milOn = true;}
+}
+
+// Mark confirm function
+void DTC::markConfirmed(){
+    m_confirmed = true;
+    m_pending = false;
+}
+
+// additional function to get string value of severity level
+std::string DTC::getSeverityString(){
+
+    switch (m_severityLevel)
+    {
+        case SeverityLevel::CRITICAL:{
+            return "Critical";
+            break;
+        }
+        case SeverityLevel::NORMAL:{
+            return "Normal";
+            break;
+        }
+        case SeverityLevel::WARN:{
+            return "Warning";
+            break;
+        }
+
+        default:{
+            return "UNKONWN";
+        }
+    }
+}

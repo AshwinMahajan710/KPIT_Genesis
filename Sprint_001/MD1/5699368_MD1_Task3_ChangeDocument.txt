@@ -1,0 +1,5 @@
+1. Main thing is to pass string or other important values by reference to save memory
+
+2. time module is beneficiaary while dealing with time. Need to study it deeply.
+
+3. No major changes in main file 
