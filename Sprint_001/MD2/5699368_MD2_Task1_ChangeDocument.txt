@@ -1,0 +1,9 @@
+1. As per MISRA guidelines, define the array size as consexpr (main file)
+
+2. Try to avoid dynamic allocation using things like array and unique_ptr whenever it is possible. it also discourage to us new and delete at runtime
+
+3. Using the range based loops . like (std::size_t i=0; i<array.size();i++)
+
+4 using the names similar to file name while using #define 
+
+5. No more additional changes
