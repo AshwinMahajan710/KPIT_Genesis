@@ -1,0 +1,4 @@
+1. Camel case should be consistent for variable names
+
+2. similarly const and variable names should be consistent
+

@@ -1,0 +1,13 @@
+1. Consistent variable names should be maintained throughout the code
+
+2. function names should be more understandable ex. isActive() instead of getActive()
+
+3. Camel case or any respective consitency should be maintained
+
+4. Maintain welll refactored code
+
+5. Instead of using magic no use predeclared constant things
+
+6. remeber to initialize all private and public members even if we are not accepting it thorugh constructor
+
+7. Never ever forgot to delete dynamically allocated memory
