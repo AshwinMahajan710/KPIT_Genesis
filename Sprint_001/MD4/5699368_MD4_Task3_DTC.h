@@ -3,7 +3,7 @@
 
 #include<string>
 #include<ctime>
-#include"5699368_MD4_Task1_SeverityLevel.h"
+#include"5699368_MD4_Task3_SeverityLevel.h"
 #include<iostream>
 
 class DTC{
@@ -74,31 +74,6 @@ class DTC{
 
         // Additional method to get string string value of severity
         std::string getSeverityString() const;
-
-        // New additional methods for DTC
-        double computeRiskScore() const;
-        std::string recommendAction() const;
-        bool mergeIfSameCode(const DTC& other);
-
-        // printsummary new member method to print key info of DTC
-        void printSummary() const;
-
-        // Now lets use friend function
-        friend bool isSevere(const DTC& dtc);
-        friend void resetDTC(DTC& dtc);
-
-        // Operator overloading
-        bool operator==(const DTC& otherDtc) const;
-        bool operator!=(const DTC& otherDtc) const;
-        DTC& operator++(); // for prefix 
-        DTC operator++(int); // for postfix
-        friend std::ostream& operator <<(std::ostream& out, const DTC& otherDtc);
-        void operator =(const DTC& otherDtc);
-        void operator()() const;
-        std::string operator[](std::string attribute) const;
-        bool operator!() const;
-        bool operator<(const DTC& otherDtc) const;
-        bool operator>(const DTC& otherDtc) const;
 };
 
 #endif
