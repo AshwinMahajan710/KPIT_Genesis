@@ -1,0 +1,38 @@
+- Usually when we use Assignment operator overloading  we do this 
+
+
+"""
+Buffer& operator=(const Buffer& other) {
+    if (this != &other) {
+        delete[] data;                                   // Step 1: destroy old data
+        size = other.size;                               // Step 2: set new size
+        data = new int[size];                            // Step 3: allocate new memory (⚠️ could throw!)
+        std::copy(other.data, other.data + size, data);  // Step 4: copy
+    }
+    return *this;
+}
+"""
+
+- Problems in above method:
+    1. Even before 'B' will get copied data in 'A' is deleted.
+    2. So if by any reason (ex. Not enough heap memory is available )  in that case operation fails and data in 'A' is also lost.
+
+- Following is the solution of that problem:
+
+"""
+Buffer& operator=(Buffer other){
+    swap(*this,other); // Instead of using original use copy (uses copy constructor)
+    return *this;
+}
+
+friend void swap(Buffer& first, Buffer& second) noexcept{
+    using std::swap;
+    swap(first.size,second.size);
+    swap(first.data, second.data);
+}
+"""
+
+- Benefits of using above method:
+    1. At the end of asssignment operator function copy gets automatically deleted.
+    2. 'noexcept' guarantees that the function will never throw an exception.
+    3. First copy and then only swap

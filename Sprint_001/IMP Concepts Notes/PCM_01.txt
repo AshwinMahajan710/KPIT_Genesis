@@ -1,0 +1,16 @@
+1. Problem Statement:
+    - How to include "" in cout Statement where conflict occurs
+    - Use of cerr (dont know) --> while printing exception or not
+
+2.  Problem statement:
+    - when we return some string as an exception we can only do  "throw std::invalid_argument("Exception: \"Invalid Day for " + MONTH_NAME[m_month] + "\"");" not throw std::invalid_argument("Exception: \"Invalid Day for " << MONTH_NAME[m_month] << "\""); not using output stream operator 
+    - Also if MONTH_NAME is const char* type we cannot combine them "throw std::invalid_argument("Exception: \"Invalid Day for " + MONTH_NAME[m_month] + "\"");" so first create ostream obj put things in that and then return ostream.str();
+    - But here is a twist --> ostream is stream object hence cannot accessible inside class. so do this "std::string("Exception: \"Invalid Day for ") + MONTH_NAME[m_month] + "\""" now if we do this "std::string("Exception: \"Invalid Day for " + MONTH_NAME[m_month] + "\"")" as both are const char* it will do pointer arithmatics and hece will fail thats why follow above method\
+
+4. Problem statement:
+    - Are there no methods for FLOAT_MAX and FLOAT_MIN --> well there are just include <cfloat> and the call FLT_MAX
+    - Checking for which things we are making constants
+    - Need to learn handling of the inputs and outputs throughly (cin , )
+
+5. Problem Statement:
+    - If written virtual function can we still call the parent function
