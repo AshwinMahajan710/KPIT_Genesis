@@ -1,0 +1,5 @@
+1. If validations needed to be performed put all initializeing params inside the body
+
+2. using the library functions like empty(), isspaec() etc.
+
+3. After validation initialize the things called as safe initialization

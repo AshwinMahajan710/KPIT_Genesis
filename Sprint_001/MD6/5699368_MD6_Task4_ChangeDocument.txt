@@ -1,0 +1,5 @@
+1. Using the preincrement is prefered
+
+2. When inheriting classess via virtual, first base class constructor is called only once and then other 2 . so maintain the sequence of constructor like that
+
+2. No other change

@@ -1,0 +1,5 @@
+1. While returning exceptions, instead of using dynamic strings use static strings specifically to avoid unnecessary issues
+
+2. Validation is necessary before asssignment
+
+3. must use F for floating point numbers else they will be considered as double

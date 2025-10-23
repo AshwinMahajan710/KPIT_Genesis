@@ -193,4 +193,7 @@
 
 18. If printing "" inside cout add '\' before ach " to add. ex. cout << "He said, \"Hello World!\"" << endl;
 
-19. 
+19. 'cctype' is libary which contains collection of character handling functions like --> isalpha() islower() etc. 
+    - Here there is a function called as std::isspace(static_cast<unsigned char>(ch)) whihc will say that character is space or not'
+
+20. C style strings contains additional null terminator. while std::string do not contain that . so we can conclude that (char ch: str) works exactly as intended
