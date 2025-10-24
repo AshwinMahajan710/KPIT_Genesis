@@ -197,3 +197,5 @@
     - Here there is a function called as std::isspace(static_cast<unsigned char>(ch)) whihc will say that character is space or not'
 
 20. C style strings contains additional null terminator. while std::string do not contain that . so we can conclude that (char ch: str) works exactly as intended
+
+21. How to initialize other class type constructor using constructor delegation
