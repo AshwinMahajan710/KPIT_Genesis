@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "memory": "cpp",
+        "functional": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -13,6 +15,7 @@
         "cstdint": "cpp",
         "cstdio": "cpp",
         "cstdlib": "cpp",
+        "cstring": "cpp",
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
@@ -22,9 +25,7 @@
         "vector": "cpp",
         "exception": "cpp",
         "algorithm": "cpp",
-        "functional": "cpp",
         "iterator": "cpp",
-        "memory": "cpp",
         "memory_resource": "cpp",
         "numeric": "cpp",
         "random": "cpp",
@@ -43,7 +44,6 @@
         "ostream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp",
-        "cstring": "cpp"
+        "typeinfo": "cpp"
     }
 }

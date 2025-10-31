@@ -1,0 +1,6 @@
+#ifndef ENGINESTATE_H
+#define ENGINESTATE_H
+
+enum class EngineState {OFF, CRANKING, IDLE, RUNNING, OVERHEATING};
+
+#endif // ENGINESTATE_H
