@@ -1,0 +1,196 @@
+1. Const never used in getting the static variable ex. static size_t getTotalCars() {return totalCars_;}
+
+2. While we want to set precision
+    - use 'iomanip'
+    - std::setprecision(1) // considers both left and right decimals ex. 123.34 might get print like 1e^2
+    - std::fixed -> use this before set precision so that we get the fixed numbers before decimal and precision no after decimal ex. std::fixed<<std::setprecision(2)
+    - Another format is scientific ex. 1.23e^2 --> use this 'cout << scientific << setprecision(2) << x << endl';
+
+3. Now when we try to print any pointer address it is by default hexadecimal and hence non understandable. To solve this problem
+    - include<cstdint>
+    - and before printing address use 'uintptr_t' to convert them in decimal ex. uintptr_t(nPtr + 8)
+
+4. Pointer to a function that takes an int and returns an int is written as ---> int (*poly)(int)
+    - Passing a function pointer lets your function call other functions dynamically, without knowing exactly which function it will call at compile time.
+    ex.     
+            int poly1(int x) { return x*x + 2*x + 1; }       // x^2 + 2x + 1
+            int poly2(int x) { return 3*x - 7; }            // 3x - 7
+
+            int evaluate(int x, int (*poly)(int)) {
+            return poly(x); // calls the function passed
+            }
+
+            int main() {
+                int x = 5;S
+                cout << evaluate(x, poly1) << endl; // calls poly1(5)
+                cout << evaluate(x, poly2) << endl; // calls poly2(5)
+            }
+
+5. If wanted to take a random no in c++
+    - include <cstdlib> (for rand() and srand())
+    - include <ctime> for time
+    - firstly set seed to the random time ---> std::srand(std::time(0));
+    - and then easily generate the random no using this ---> std::rand()
+
+6. Type conversion operator overloading 
+    - Here we overload operators like float(), std::string() so that we can get any float value from the class
+    - example:
+
+        '''
+        HybridVehicle:: operator float() const{
+            return (electricKm + gasolineKm) / gasolineUsed; 
+        }
+        '''
+    -
+        We dereference this pointer
+        '''
+        bool HybridVehicle::operator == (const HybridVehicle& other) const{
+            return (float(*this) > float(other));
+        }
+        '''
+7. When want to write the overloading function which can read as well as to write the no in array ex arr[5] // read   and arr[5] = 50
+    - In such conditions while read ("""const int& operator[](int) const;""")  // reference but constant 
+    - While writing (return int&) // will return reference to change
+
+8. In cases like we want to directly pass list of values in construictor we use initializer list
+    -
+    """
+    Quadrilateral::Quadrilateral(std::initializer_list<float> s, std::initializer_list<float> a) {
+        for(int i = 0; i < 4; i++) {
+            std::copy(s.begin(),s.end(),sides);
+            std::copy(a.begin(),a.end(),angles);
+        }
+    }
+    """
+    - This method is useful in such cases """ Quadrilateral quad({3,4,5,6}, {90,90,90,90});"""
+
+9. In c++ angle always calulated ny prebuilt methods in radian degrees=radians×π/180​ this is the formulae for it
+
+10. There are two ways we return the pointer via reference
+    -
+    """
+    // Case 1: pointer itself is const, but value can be modified
+    int* const& func1(int* const& p) {
+        *p = 50;  // ✅ allowed (modify value)
+        // p = nullptr; // ❌ not allowed (cannot change pointer itself)
+        return p;
+    }
+    """
+    -
+    """
+    // Case 2: value is const, but pointer can be modified
+    const int* & func2(const int* & p) {
+        static int x = 100;
+        p = &x;   // ✅ allowed (change pointer)
+        //*p = 200; // ❌ not allowed (value is const)
+        return p;
+    }
+    """
+    - So most of the times we return pointer by second method. By this we can change the pointer but cannot change its values
+
+11. Using friend when we overload << and >> operator. 
+    - ostream is the object of class <iostream>. We cannot call the object of another class in different class as we do not have access to private members. This is th reason to use friend function 
+
+12. In operator overloading
+    - Left-side operators (mutating) → Member functions returning reference.
+    - Right-side operators (non-mutating) → Non-member functions (often friends), returning by value.
+
+13. Operator overloading for ++ operator#include<iostream>
+
+    """
+    class addition{
+        public:
+            int a;
+            addition( ){ a = 10; }
+            void operator ++(){a ++;} // for ++ add
+            void operator ++ (int) {a++;} // for add++
+    };
+
+    int main(){
+        addition add;
+        std::cout<<add.a<<std::endl;
+        ++add;
+        std::cout<<add.a<<std::endl;
+        add++;
+        std::cout<<add.a<<std::endl;
+    }
+    """
+
+14. references must be initialized when the object is constructed.
+    - hence
+    """
+    SimulationEngine::SimulationEngine(ConfigManager& config, FaultLogger* logger){
+        this->config = config;
+        this->logger = logger
+    }
+    """
+    will give error as there is a reference which cannot be changed that is & config . hence use initializer list
+
+15. There are three places const can appear when dealing with pointers:
+    - To the left of the * → object is constant // ex. const int* p; --> You cannot modify the value being pointed to -> *p = 10; ❌ p = &x; ✅ 
+    - To the right of the * → pointer itself is constant // ex. int* const p = &x; --> pointer itself is const, but the data is not -> *p = 10; ✅ p = &y; ❌
+    - After the function parentheses → this function doesn’t modify the object (the this pointer is const)
+    - Additional (Double Pointer) -> int** p; -> int* const* p;( you can move the outer pointer (p++), but not change where the inner pointers point)
+
+16. That's How custom sorting algo works 
+    
+    """
+    void DiagnosticReport::sortBySeverityDescending(){
+        std::sort(collection.begin(), collection.end(), compareSeverity);
+    }
+
+    bool DiagnosticReport::compareSeverity(const SensorReading& a, const SensorReading& b) const{
+        return a.getSeverity() < b.getSeverity();
+    }
+    """
+
+    - starting_pointer, ending_pointer and function that how to sort 
+
+17. Diamond problem in c++
+    - When we inherit like following
+     A
+    / \
+   B   C 
+   \   / 
+     D 
+
+    - if there is a common thing in both B and C which was inherited from A then it creates ambiguity in D. that for which class common function to refer.
+    // A object memory layout
+    // _a
+
+    // B object memory layout
+    // _a
+    // _b
+
+    // C object memory layout
+    // _a
+    // _c
+
+    // D object memory layout
+    // _a --> ambiguous
+    // _b
+    // _a --> ambiguous
+    // _c
+    // _d
+
+    - Another thing, it doesnt come until you touch A. (just creating obj (D d) --> will not give any problem, when we do d._a (i.e. Accessing ambiguity variable) it gives problem)
+    - In short we can access unique variables without any issue 
+
+    """
+    class A { public: int _a; };
+
+    class B : virtual public A { public: int _b; };
+    class C : virtual public A { public: int _c; };
+
+    class D : public B, public C { public: int _d; };
+    """
+
+    - when we inherit B and C virtually it will not cause any problem
+
+    - Also when created of D --> it will call constructor of A first and then B and C. (IMP)
+
+    - using virtual it tells "Hey! Only one shared copy of A should exist no matter how many times it’s inherited"
+
+18. If printing "" inside cout add '\' before ach " to add. ex. cout << "He said, \"Hello World!\"" << endl;
+
+19. 

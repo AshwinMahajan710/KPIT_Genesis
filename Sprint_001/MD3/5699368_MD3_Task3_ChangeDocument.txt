@@ -1,0 +1,3 @@
+1. even if private member is array, still define its size as "static const int "
+
+2. make Consistent names , sometimes even gpt makes some mistake

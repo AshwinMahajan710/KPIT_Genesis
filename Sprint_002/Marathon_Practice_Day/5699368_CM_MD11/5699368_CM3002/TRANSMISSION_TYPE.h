@@ -1,0 +1,9 @@
+#ifndef TRANSMISSION_TYPE_H
+#define TRANSMISSION_TYPE_H
+
+enum class TRANSMISSION_TYPE{
+    AUTOMATIC,
+    MANUAL
+};
+
+#endif // TRANSMISSION_TYPE_H

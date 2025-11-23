@@ -1,0 +1,10 @@
+#ifndef INC_5699368_MD4_TASK4_LEVEL_H
+#define INC_5699368_MD4_TASK4_LEVEL_H
+
+enum class Level{
+    OK,
+    WARN,
+    CRITICAL
+};
+
+#endif // INC_5699368_MD4_TASK4_LEVEL_H

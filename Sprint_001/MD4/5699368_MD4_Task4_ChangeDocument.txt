@@ -1,0 +1,3 @@
+1. Avoid using magic no completely
+
+2. Keep parameter name logical

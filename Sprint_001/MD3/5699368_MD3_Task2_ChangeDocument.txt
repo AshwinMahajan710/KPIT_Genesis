@@ -1,0 +1,4 @@
+1. Maintaining consistent names throughout the code 
+
+2. big and highlighted comments of showing functionality of particular particular
+

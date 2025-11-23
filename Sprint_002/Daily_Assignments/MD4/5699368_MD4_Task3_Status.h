@@ -1,0 +1,10 @@
+#ifndef INC_5699368_MD4_TASK3_STATUS_H
+#define INC_5699368_MD4_TASK3_STATUS_H
+
+enum class Status{
+    VALID,
+    WEAK,
+    LOST
+};
+
+#endif // INC_5699368_MD4_TASK3_STATUS_H

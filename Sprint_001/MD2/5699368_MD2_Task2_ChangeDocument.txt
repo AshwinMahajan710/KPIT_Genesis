@@ -1,0 +1,3 @@
+1. Use of min max from algorithm so that we can make code more readble and well documented
+
+2. nothing more chnages

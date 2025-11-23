@@ -1,0 +1,10 @@
+#ifndef INC_5699368_MD2_TASK1_STATUS_H
+#define INC_5699368_MD2_TASK1_STATUS_H
+
+enum class Status{
+    OK,
+    WARN,
+    FAIL
+};
+
+#endif // INC_5699368_MD2_TASK1_STATUS_H

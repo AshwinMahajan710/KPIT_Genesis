@@ -1,0 +1,9 @@
+1. No discrad for accidental ignoring return values (DTC .h file)
+
+2. Fixing spelling issues (DTC .h file)
+
+3. Names should be consistent in nature (camelCase) (DTC .h file)
+
+4. Declaring classes as "final" if we dont want to inherit initializer (DTC .h file)
+
+5. 

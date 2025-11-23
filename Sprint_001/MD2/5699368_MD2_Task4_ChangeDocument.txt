@@ -1,0 +1,9 @@
+1. Ensure names of variables are consistent across code
+
+2. pass strings like const std::string& 
+
+3. methods which do not modify anything should be kept const
+
+4. using min and max in algorithm for simplified code and better readability
+
+// other things do not need refactoring as in okay consistent state

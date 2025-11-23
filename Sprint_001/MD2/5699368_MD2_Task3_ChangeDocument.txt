@@ -1,0 +1,7 @@
+1. const for read only methods
+
+2. Passing string via const &
+
+3. Well commented code should be there
+
+4. no change for unrefactored code

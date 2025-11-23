@@ -1,0 +1,7 @@
+1. Consistent variable names should be preferred on top ---> Most Highlighted mistake
+
+2. in overloading '=' we should first check (this != & other) compulsory 
+
+3. Well commented code is most preffered
+
+4. 

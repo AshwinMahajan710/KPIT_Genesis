@@ -1,0 +1,10 @@
+#ifndef INC_5699368_MD2_TASK2_STATE_H
+#define INC_5699368_MD2_TASK2_STATE_H
+
+enum class State{
+    UNCALIBRATED,
+    CALIBRATED,
+    ERROR
+};
+
+#endif // INC_5699368_MD2_TASK2_STATE_H

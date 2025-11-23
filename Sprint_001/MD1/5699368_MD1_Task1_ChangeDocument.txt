@@ -1,0 +1,14 @@
+
+1. Getters and setters should have noexcept also with const.(in FleetVehicle .h file)
+
+2. While initializing varible names we should use initializer list (in FleetVehicle .cpp file)
+
+3. In global file , or any other function calling try to pass values strictly via reference
+
+4. avoid raw throw, always throw with some value or message
+
+5. By default decimal values are double. use 'F' at end to specifically call float val
+
+6. Avoid using heap in case of small memory requirement As stack is very fast than heap. (main file)
+
+7. verify input in case if cin (main file)

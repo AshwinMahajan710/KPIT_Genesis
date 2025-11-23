@@ -229,3 +229,76 @@
 28. when we dont know which type of pointer we are going to reveive in function declare it as void* ex. in overloading delete operator
 
 29. "final" keyword to avoid redefintion of particular function in c++; Declare class as final to avoid it from inheriting
+
+30. Smart Pointers:
+    - class that wraps raw pointer, to manage life time of a pointer
+    - most fundamental use case of smart pointer is to remove the chances of memory leaks.
+    - it make sure object is deleted if it is not used anymore
+
+    Types:
+        1. unique_ptr --> Allows only one owner of the underlying pointer
+        2. shared_ptr --> Allows multiple owner of the same pointer (reference count is maintained)
+        3. weak_ptr --> special type of shared_ptr which doesn't count the reference (very useful in case of cyclic dependency)
+
+    1. unique_ptr:
+        - unique_ptr is a class template
+        - when unique_ptr obj goes out of the scope unique_ptr deletes it automatically.
+        - similar to actual pointers we can use -> and * on the unique_ptr
+        - even when exception comes it still deletes memory so that no memory leaks
+        // Operations :- release , reset, swap, get, get_deleter
+
+        - cretaing array:
+            std::unique_ptr<int> arr[10];
+            for(auto i=0;i<10;i++){
+                arr[i] = std::make_unique<int>(i+1);
+            }
+            arr[0].get(); // ----> return raw pointer of std::unique_ptr
+            std::unique_ptr<int>  temp = std::move(arr[2]); // 
+            for(auto& i: arr){ // we can copy any pointer that's why even in loop use using the reference.
+                std::cout<<*i<<std::endl;
+            }
+    
+    2. Shared Pointer
+        - can share ownership of obj (managed object)
+        - several shared_ptr can point to the same object
+        - it keeps shared_count to track how many pointers are pointing to the same object and one last obj gets out of the scope then managed object gets deleted.
+        - shared pointer is thread safe(shared_count) and not thread safe(managed obj)
+            - control block is thread safe managed object is not
+        - 3 ways shared_ptr will destroy the menaged object
+            - if the last pointer goes out of scope
+            - if initialize shared_ptr with another shared_ptr
+            - if reset shared ptr
+            - reference count does not work on pointer and reference 
+
+                cout << sp->getX() << endl; 
+                cout << sp.use_count() << endl; // 1
+                 std::shared_ptr<Foo> sp1 = sp;
+                cout << sp.use_count() << endl;// 2
+                cout << sp1.use_count() << endl;
+
+31. inclass initialization means directly assign variables some value inside class. while memeber initialization in constructor
+
+32. When which one is going to be get called ->  
+    logVehicleByRef(v1);        // ✅ passes same object → no copy
+    logVehicleByValue(v1);      // ✅ calls Copy constructor
+    logVehicleByValue(Vehicle()); // ✅ temporary (rvalue) → Move constructor
+
+33. Safe initializations means uniform initializations only at the time of first creating obj or value.
+
+34. Imp INT things:
+    1. std::uint64_t --> 64 bit unsigned int datatype for things like timestamp --> to initialize wither use static cast or use "ULL" at end of the number
+
+35. Always rememeber array of references not allowed in c++.
+
+36. Virtual destructor usecase: when derived object deleted via base class pointer on base class destructor runs. to avoid memory and to run both class destructors we use virtual destructor;
+
+37. std::list<int>::const_iterator it = l.begin(); // the const_iterator ensures that we cannot modify the elements by dereferencing the iterator
+
+        std::list<int> l = {1,2,3};
+
+        std::list<int>::const_iterator it = l.begin();
+
+        *it = 10;   // ❌ ERROR (read-only)
+        int x = *it; // ✔ OK
+
+38. 
