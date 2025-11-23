@@ -1,25 +1,29 @@
-#include<string>
 #include<variant>
-#include"5699368_MD14_Task2_Global.h"
-#include"5699368_MD14_Task2_SensorReading.h"
+#include<string>
 #include<iostream>
+#include"5699368_MD14_Task2_SensorData.h"
+
+// display function --> global
+void displaySensorInfo(const Sensordata& sensor){
+    std::cout<<"\nSensor ID: "<<sensor.getId()<<std::endl;
+    std::cout<<"Sensor Holding Val: ";
+    if(sensor.isFloat()){std::cout<<"Float"<<std::endl;}
+    else if(sensor.isInt()){std::cout<<"Int"<<std::endl;}
+    else {std::cout<<"String"<<std::endl;}
+    sensor.processReading();
+}
 
 int main(){
 
-    // creating 3 objects
-    SensorReading r1("Temp", std::variant<int , float, std::string> (122.0f));
-    SensorReading r2("Status", std::variant<int , float, std::string> ("Active"));
-    SensorReading r3("Speed", std::variant<int , float, std::string> (200));
+    // declaring the things
+    Sensordata data1("Engine","23");
+    Sensordata data2("Brake",std::variant<int, float, std::string>(23.4f));
+    Sensordata data3("Gear",34.7f);
 
-    // printng sensor info
-    printSensorReading(r1);
-    printSensorReading(r2);
-    printSensorReading(r3);
-
-    // chekcing the types
-    r1.processReading();
-    r2.processReading();
-    r3.processReading();
+    // displaying sensor info
+    displaySensorInfo(data1);
+    displaySensorInfo(data2);
+    displaySensorInfo(data3);
     
     return 0;
 }
